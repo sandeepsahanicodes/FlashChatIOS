@@ -2,7 +2,7 @@
 
 This is iOS based basic chatting app.
 
-##Technologies
+## Technologies
 
 • Firebase
 • Cocoapad
