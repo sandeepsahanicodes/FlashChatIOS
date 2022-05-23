@@ -28,6 +28,7 @@ class ChatViewController: UIViewController {
         title=K.appName
         navigationItem.hidesBackButton=true
         
+        tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
     }
     
     @IBAction func sendPressed(_ sender: UIButton)
@@ -51,23 +52,22 @@ class ChatViewController: UIViewController {
     
 }
 
+//MARK: - Extending ChatViewController to adapt UITableViewDataSource protocol
 extension ChatViewController: UITableViewDataSource
 {
-    
+    // Method used for creating rows
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return message.count
     }
     
-    
+    // Method used for population data into created rows
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell=tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath)
+        let cell=tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! MessageCell
         
-        cell.textLabel?.text=message[indexPath.row].body
+         cell.label.text=message[indexPath.row].body
         return cell
-        
     }
-    
-    
+
 }

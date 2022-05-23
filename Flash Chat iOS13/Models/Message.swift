@@ -6,6 +6,7 @@
 //  Copyright © 2022 Angela Yu. All rights reserved.
 //
 
+// Messaging model
 struct Message
 {
     let sender: String
