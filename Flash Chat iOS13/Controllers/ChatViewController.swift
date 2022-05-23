@@ -14,6 +14,9 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextfield: UITextField!
     
+    // Initialising database
+    let db=Firestore.firestore()
+    
     var message: [Message] =
     [
         Message(sender: "1@2.com", body:"Hey!"),
@@ -21,6 +24,7 @@ class ChatViewController: UIViewController {
         Message(sender: "1@2.com", body: "What's up")
         
     ]
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -33,7 +37,22 @@ class ChatViewController: UIViewController {
     
     @IBAction func sendPressed(_ sender: UIButton)
     {
-        
+        if let messageBody=messageTextfield.text,let messageSender=Auth.auth().currentUser?.email
+        {
+            // Sends data to database
+            db.collection(K.FStore.collectionName).addDocument(data:[K.FStore.senderField:messageSender,
+                                                                     
+                                                                     K.FStore.bodyField: messageBody]){(error) in
+                if let e=error
+                {
+                    print("An error occurred while sending data!\(e)")
+                }
+                else
+                {
+                    print("Data sent successfully!")
+                }
+            }
+        }
     }
     
     @IBAction func LogoutPressed(_ sender: UIBarButtonItem)
@@ -66,8 +85,8 @@ extension ChatViewController: UITableViewDataSource
     {
         let cell=tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! MessageCell
         
-         cell.label.text=message[indexPath.row].body
+        cell.label.text=message[indexPath.row].body
         return cell
     }
-
+    
 }

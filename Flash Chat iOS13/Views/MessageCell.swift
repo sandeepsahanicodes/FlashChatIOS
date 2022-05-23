@@ -10,7 +10,6 @@ import UIKit
 
 class MessageCell: UITableViewCell
 {
-
     @IBOutlet weak var messageBubble: UIView!
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var rightImageView: UIImageView!
@@ -27,5 +26,4 @@ class MessageCell: UITableViewCell
 
         // Configure the view for the selected state
     }
-    
 }
