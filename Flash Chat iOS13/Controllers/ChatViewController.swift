@@ -19,10 +19,6 @@ class ChatViewController: UIViewController {
     
     var message: [Message] =
     [
-        Message(sender: "1@4.com", body:"Hey!"),
-        Message(sender: "a@b.com", body: "Hello"),
-        Message(sender: "1@4.com", body: "What's up")
-        
     ]
     
     override func viewDidLoad()
@@ -38,9 +34,9 @@ class ChatViewController: UIViewController {
     }
     func loadMessage()
     {
-        message=[]
-        db.collection(K.FStore.collectionName).getDocuments { querySnapshot, error in
-            
+        
+        db.collection(K.FStore.collectionName).order(by:K.FStore.dateField).addSnapshotListener { querySnapshot, error in
+            self.message=[]
             if let error=error
             {
                 print("An error occurred while retriving data:\(error)")
@@ -60,6 +56,8 @@ class ChatViewController: UIViewController {
                             DispatchQueue.main.async
                             {
                                 self.tableView.reloadData()
+                                let indexPath=IndexPath(row: self.message.count - 1, section: 0)
+                                self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
                             }
                         }
                     }
@@ -73,9 +71,10 @@ class ChatViewController: UIViewController {
         if let messageBody=messageTextfield.text,let messageSender=Auth.auth().currentUser?.email
         {
             // Sends data to database
+            
             db.collection(K.FStore.collectionName).addDocument(data:[K.FStore.senderField:messageSender,
                                                                      
-                                                                     K.FStore.bodyField: messageBody]){(error) in
+                                                                     K.FStore.bodyField: messageBody, K.FStore.dateField: Date().timeIntervalSince1970]){(error) in
                 if let e=error
                 {
                     print("An error occurred while sending data!\(e)")
@@ -83,6 +82,11 @@ class ChatViewController: UIViewController {
                 else
                 {
                     print("Data sent successfully!")
+                    DispatchQueue.main.async
+                    {
+                        self.messageTextfield.text=""
+                    }
+                    
                 }
             }
         }
@@ -116,9 +120,27 @@ extension ChatViewController: UITableViewDataSource
     // Method used for population data into created rows
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
+        let message=message[indexPath.row]
         let cell=tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! MessageCell
         
-        cell.label.text=message[indexPath.row].body
+        cell.label.text=message.body
+        
+        // This is a message from current user
+        if message.sender == Auth.auth().currentUser?.email
+        {
+            cell.leftImageView.isHidden=true
+            cell.rightImageView.isHidden=false
+            cell.messageBubble.backgroundColor=UIColor(named: K.BrandColors.lightPurple)
+            cell.label.textColor=UIColor(named: K.BrandColors.purple)
+        }
+        else
+        {
+            cell.leftImageView.isHidden=false
+            cell.rightImageView.isHidden=true
+            cell.messageBubble.backgroundColor=UIColor(named: K.BrandColors.purple)
+            cell.label.textColor=UIColor(named: K.BrandColors.lightPurple)
+        }
+        
         return cell
     }
     
