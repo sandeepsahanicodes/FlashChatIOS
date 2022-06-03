@@ -9,7 +9,8 @@ https://user-images.githubusercontent.com/82876741/170316677-32225b22-5022-4049-
 
 ## Technologies
 
-• Firebase
-• Cocoapad
-• Swift
-• UITableView
+1. [General Info](#general-info)
+2. [Technologies](#technologies)
+3. [Installation](#installation)
+4. [Collaboration](#collaboration)
+5. [FAQs](#faqs)
