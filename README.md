@@ -10,7 +10,11 @@ https://user-images.githubusercontent.com/82876741/170316677-32225b22-5022-4049-
 ## Technologies
 
 • Firebase
+
 • Firestore Cloud
-• Firebase
+
+• FirebaseAuth
+
 • UIKit
+
 • UITableView
