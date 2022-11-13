@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://github.com/sandeepsahanicodes/FlashChatIOS/blob/master/Flash%20Chat%20iOS13/Assets.xcassets/AppIcon.appiconset/180.png" />
+</p>
+
 # FlashChatIOS
 
 This is iOS based basic chatting app.
