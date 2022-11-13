@@ -9,12 +9,8 @@ https://user-images.githubusercontent.com/82876741/170316677-32225b22-5022-4049-
 
 ## Technologies
 
-• Firebase
-
-• Firestore Cloud
-
-• FirebaseAuth
-
-• UIKit
-
-• UITableView
+- Swift5
+- UIKit
+- Firebase
+- Firestore Cloud to hold chats
+- UITableView
