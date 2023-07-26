@@ -20,10 +20,17 @@ This is iOS based basic chatting app.
 
 https://user-images.githubusercontent.com/82876741/170316677-32225b22-5022-4049-9fcc-a88a182290a9.mov
 
-## Technologies Used:
-
+# Technologies Used:
+### Foundation
 - Swift5
 - UIKit
 - Firebase
-- Firestore Cloud to hold chats
+- Firestore Cloud(Stores chats)
 - UITableView
+  
+### Dependencies 
+- [IQKeyboardManager](https://github.com/hackiftekhar/IQKeyboardManager)(A swift library allows to prevent issues of keyboard sliding up and cover UITextField/UITextView. )
+
+# Links
+- App in action [Click to watch the video]()
+
