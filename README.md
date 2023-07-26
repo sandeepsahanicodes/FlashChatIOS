@@ -32,5 +32,5 @@ https://user-images.githubusercontent.com/82876741/170316677-32225b22-5022-4049-
 - [IQKeyboardManager](https://github.com/hackiftekhar/IQKeyboardManager)(A swift library allows to prevent issues of keyboard sliding up and cover UITextField/UITextView. )
 
 # Links
-- App in action [Click to watch the video]()
+- App in action [Click to watch the video](https://www.youtube.com/watch?v=x5EP6nQRveo)
 
